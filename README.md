@@ -60,6 +60,7 @@ ob = spell_checker(df, "text", save_path="correct_train_data.csv")
 ```
 
 ## Future Ideas
+- Directly add suggestion from pyenchant when user types in the index of the suggested word
 - Will be adding automated, contextual error corrections
 
 ## Feature Request
