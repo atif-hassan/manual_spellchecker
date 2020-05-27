@@ -1,0 +1,8 @@
+README.md
+setup.py
+src/manual_spellchecker.py
+src/manual_spellchecker.egg-info/PKG-INFO
+src/manual_spellchecker.egg-info/SOURCES.txt
+src/manual_spellchecker.egg-info/dependency_links.txt
+src/manual_spellchecker.egg-info/requires.txt
+src/manual_spellchecker.egg-info/top_level.txt
