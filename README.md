@@ -32,8 +32,6 @@ from manual_spellchecker import spell_checker
 ### Quick analysis of the total number of errors
 ![](resources/manual_spellchecker_quick_analysis.gif)
 
-
-
 ### Multiple columns can be passed for spelling correction
 ```python
 df = pd.read_csv("Train.csv")
@@ -46,10 +44,8 @@ ob.spell_check()
 ### Tokenizers affect the type/number of error(s)
 ![](resources/manual_spellchecker_quick_analysis_tokenizer.gif)
 
-
 ### Get a list of all the errors
 ![](resources/manual_spellchecker_get_errors.gif)
-
 
 ### Make corrections
 ![](resources/manual_spellchecker_corrections.gif)
@@ -62,7 +58,7 @@ ob = spell_checker(df, "text", save_path="correct_train_data.csv")
 ```
 
 ## Future Ideas
-- Directly add suggestion from pyenchant when user types in the index of the suggested word
+- Directly add suggestion from pyenchant, when user types in the index of the suggested word
 - Will be adding automated, contextual error corrections
 
 ## Feature Request
