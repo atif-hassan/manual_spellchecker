@@ -21,6 +21,7 @@ While I was working on a text based multi-class classification competition, I no
  - **correct_words** - Starts the process of manual correction
  
  **Important Note:** Type -999 into the input box to stop the error correction and save the current progress (is save_path is provided)
+ 
  **P.S.:** As the package is built on **_pyenchant_**, it also provides suggestions while performing corrections
 
 ### How to import?
@@ -30,6 +31,7 @@ from manual_spellchecker import spell_checker
 
 ### Quick analysis of the total number of errors
 ![](resources/manual_spellchecker_quick_analysis.gif)
+
 
 
 ### Multiple columns can be passed for spelling correction
