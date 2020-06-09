@@ -20,7 +20,7 @@ While I was working on a text based multi-class classification competition, I no
 - **get_all_errors** - Returns a list of all the suspected errors
  - **correct_words** - Starts the process of manual correction
  
- **Important Note:** Type -999 into the input box to stop the error correction and save the current progress (is save_path is provided)
+ **Important Note:** Type -999 into the input box to stop the error correction and save the current progress (if save_path is provided)
  
  **P.S.:** As the package is built on **_pyenchant_**, it also provides suggestions while performing corrections
 
