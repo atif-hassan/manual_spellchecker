@@ -1,5 +1,8 @@
 [![Downloads](https://pepy.tech/badge/manual-spellchecker)](https://pepy.tech/project/manual-spellchecker)
-[![PyPI download total](https://img.shields.io/pypi/dt/manual-spellchecker.svg)](https://pypi.python.org/pypi/manual-spellchecker/)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity)
+
+[![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
+[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](https://github.com/atif-hassan/)
 # Manual Spell Checker
 A manual spell checker **built on _pyenchant_** that allows you to swiftly correct misspelled words.
 
