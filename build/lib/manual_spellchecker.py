@@ -11,6 +11,7 @@ class spell_checker:
             from tqdm import tqdm
         import enchant
         import numpy as np
+        import string
         
         # The pyenchant model for checking if spelling is correct
         self.enc_dict = enchant.Dict("en_US")
@@ -22,6 +23,7 @@ class spell_checker:
         self.save_path = save_path
         self.error_list = list()
         self.np = np
+        self.string = string
     
     # Tokenizer
     def split_tokenizer(self, text, tokenizer):
@@ -43,7 +45,7 @@ class spell_checker:
             row = dataframe.loc[index, column_names]
             # Split the text into tokens
             tokens = self.np.array(self.split_tokenizer(row, tokenizer))
-            errors = [False if (self.enc_dict.check(word) or word in string.punctuation) else True for word in tokens]
+            errors = [False if (self.enc_dict.check(word) or word in self.string.punctuation) else True for word in tokens]
             # Add the misspelled words to the error list
             self.error_list.extend(tokens[errors])
     
@@ -56,7 +58,7 @@ class spell_checker:
             # Split the text into tokens
             tokens = self.split_tokenizer(row, tokenizer)
             # Same error could exist in the same text, so use set()
-            error_list = list(set([word for word in tokens if not (enc_dict.check(word) or word in string.punctuation)]))
+            error_list = list(set([word for word in tokens if not (enc_dict.check(word) or word in self.string.punctuation)]))
             # Individually correct the errors
             for misspelled_word in error_list:
                 string_to_print = ""

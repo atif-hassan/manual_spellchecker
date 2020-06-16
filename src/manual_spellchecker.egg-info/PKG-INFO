@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: manual-spellchecker
-Version: 1.1
+Version: 1.2
 Summary: A manual spell checker built on pyenchant that allows you to swiftly correct misspelled words.
 Home-page: https://github.com/atif-hassan/manual_spellchecker
 Author: Atif Hassan

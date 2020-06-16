@@ -6,7 +6,7 @@ with open("README.md", "r") as fh:
     
 setuptools.setup(
      name = 'manual_spellchecker',  
-     version = '1.1',
+     version = '1.2',
      author = "Atif Hassan",
      author_email = "atif.hit.hassan@gmail.com",
      description = "A manual spell checker built on pyenchant that allows you to swiftly correct misspelled words.",
