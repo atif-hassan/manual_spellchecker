@@ -13,23 +13,47 @@ While I was working on a text based multi-class classification competition, I no
 ## How to install?
 ```pip install manual_spellchecker```
 
-## How to use it?
-### Parameters
+## Features
+- All features as provided by [pyenchant](https://github.com/pyenchant/pyenchant)
+- Quickly analyze and get a list of all misspelled words
+- Can replace, skip and delete misspelled words
+- Use your favourite tokenizer for splitting words
+- Replaced misspelled words via provided suggestions by simply typing in their indices
+- Can checkpoint current set of corrections
+- Contexualized pretty printing for easy visual correction (works on both command line and notebook)
+
+## Functions and Parameters
+```python
+# Initialize the spell checking object
+__init__(dataframe, column_names, tokenizer=None, num_n_words_dis=5, save_path=None)
+```
 - **dataframe** - Takes a pandas dataframe as input
-- **column_names** - Pass the column names upon which you want to perform spelling correction
+- **column_names** - Pass the column name(s) upon which you want to perform spelling correction
 - **tokenizer=None** - Pass your favourite tokenizer like nltk or spacy, etc. (Default: splits on space)
 - **num_n_words_dis=5** - This decides how many neighbouring words to display on either side of the error
-- **save_path=None** - If a save path is provided, the final corrected dataframe is saved as a csv. (Default: the dataframe is not saved externally)
+- **save_path=None** - If a save path is provided, the final corrected dataframe is saved as a csv. (Default: the dataframe is not saved but returned)
 
-### Functions
-- **spell_check** - Prints the total number of suspected errors
-- **get_all_errors** - Returns a list of all the suspected errors
- - **correct_words** - Starts the process of manual correction
- 
- **Important Note:** Type -999 into the input box to stop the error correction and save the current progress (if save_path is provided)
- 
- **P.S.:** As the package is built on **_pyenchant_**, it also provides suggestions while performing corrections
+```python
+# For quick analysis of all the misspelled words
+spell_check()
+```
 
+```python
+# Returns a list of all the misspelled words
+get_all_errors()
+```
+
+```python
+# Starts the process of correcting erroneous words
+correct_words()
+```
+ 
+ **Important Note:**
+ - Type -999 into the input box to stop the error correction and save the current progress (if save_path is provided)
+ - Simply press enter if you want to skip the current word
+ - Type in "" or '' in the input box to delete a misspelled word
+
+## Usage
 ### How to import?
 ```python
 from manual_spellchecker import spell_checker
@@ -64,7 +88,6 @@ ob = spell_checker(df, "text", save_path="correct_train_data.csv")
 ```
 
 ## Future Ideas
-- Directly add suggestion from pyenchant, when user types in the index of the suggested word
 - Will be adding automated, contextual error corrections
 
 ## Feature Request
