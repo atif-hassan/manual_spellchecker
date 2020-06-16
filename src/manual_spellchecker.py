@@ -32,12 +32,8 @@ class spell_checker:
     
     # Returns a list of all misspelled words
     def get_all_errors(self):
-        # If only single column passed, column_names will be a string
-        if type(self.column_names) == str:
-            self.find_errors(self.enc_dict, self.tqdm, self.dataframe, self.tokenizer, self.column_names)
-        else:
-            for column in self.column_names:
-                self.find_errors(self.enc_dict, self.tqdm, self.dataframe, self.tokenizer, column)
+        if len(self.error_list) == 0:
+            print("Either there are no errors in your dataset or you forgot to run the 'spell_check' function")
         return self.error_list
     
     # If only a single column is required to be analyzed for spelling errors
@@ -47,8 +43,7 @@ class spell_checker:
             row = dataframe.loc[index, column_names]
             # Split the text into tokens
             tokens = self.np.array(self.split_tokenizer(row, tokenizer))
-            # Convert all indices of misspelled words to True and rest to False
-            errors = [False if self.enc_dict.check(word) else True for word in tokens]
+            errors = [False if (self.enc_dict.check(word) or word in string.punctuation) else True for word in tokens]
             # Add the misspelled words to the error list
             self.error_list.extend(tokens[errors])
     
@@ -61,7 +56,7 @@ class spell_checker:
             # Split the text into tokens
             tokens = self.split_tokenizer(row, tokenizer)
             # Same error could exist in the same text, so use set()
-            error_list = list(set([word for word in tokens if not enc_dict.check(word)]))
+            error_list = list(set([word for word in tokens if not (enc_dict.check(word) or word in string.punctuation)]))
             # Individually correct the errors
             for misspelled_word in error_list:
                 string_to_print = ""
@@ -73,12 +68,19 @@ class spell_checker:
                 string_to_print+= " ".join(tokens[start_index: mid_index]) + " " + "\033[41;30m" + misspelled_word + "\033[m" + " " + " ".join(tokens[mid_index+1: final_index])
                 if final_index < len(tokens):
                     string_to_print+= " ...."
-                print("\n\nMisspled Word: " + string_to_print)
-                print("Suggestions: ", enc_dict.suggest(misspelled_word))
+                suggestions = enc_dict.suggest(misspelled_word)
+                print("\n\nMisspelled Word: " + string_to_print)
+                print("Suggestions: ", suggestions)
                 correct_word = input("Correct Version: ")
                 if correct_word == "-999":
                     break_flag = True
                     break
+                elif correct_word.isdigit() and int(correct_word) < len(suggestions): # User wants to use suggestion
+                    dataframe.loc[index, column_names] = dataframe.loc[index, column_names].replace(misspelled_word, suggestions[int(correct_word)-1])
+                elif len(correct_word) == 0: # User wants to Skip
+                    continue
+                elif correct_word == "''" or correct_word == '""': # User wants to remove the word
+                    dataframe.loc[index, column_names] = dataframe.loc[index, column_names].replace(misspelled_word, "")
                 else:
                     dataframe.loc[index, column_names] = dataframe.loc[index, column_names].replace(misspelled_word, correct_word)
             if break_flag:
@@ -113,4 +115,3 @@ class spell_checker:
         if self.save_path:
             new_dataframe.to_csv(self.save_path, index=False)
         return new_dataframe
-    

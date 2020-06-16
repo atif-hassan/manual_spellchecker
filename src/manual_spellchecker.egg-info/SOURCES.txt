@@ -1,3 +1,5 @@
+LICENSE
+MANIFEST.in
 README.md
 setup.py
 src/manual_spellchecker.py
