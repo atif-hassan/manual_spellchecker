@@ -18,7 +18,7 @@ While I was working on a text based multi-class classification competition, I no
 - Quickly analyze and get a list of all misspelled words
 - Can replace, skip and delete misspelled words
 - Use your favourite tokenizer for splitting words
-- Replaced misspelled words via provided suggestions by simply typing in their indices (Inexing starts from 1 and not 0)
+- Replaced misspelled words via provided suggestions by simply typing in their indices (Indexing starts from 1 and not 0)
 - Can checkpoint current set of corrections
 - Contexualized pretty printing for easy visual correction (works on both command line and notebook)
 
