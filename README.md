@@ -60,10 +60,19 @@ from manual_spellchecker import spell_checker
 ```
 
 ### Quick analysis of the total number of errors
+```python
+# Read the data
+df = pd.read_csv("Train.csv")
+# Initialize the model
+ob = spell_checker(df, "text")
+# Quick analysis
+ob.spell_check()
+```
 ![](resources/manual_spellchecker_quick_analysis.gif)
 
 ### Multiple columns can be passed for spelling correction
 ```python
+# Read the data
 df = pd.read_csv("Train.csv")
 # Initialize the model
 ob = spell_checker(df, ["text", "label"])
@@ -71,13 +80,39 @@ ob = spell_checker(df, ["text", "label"])
 ob.spell_check()
 ```
 
-### Tokenizers affect the type/number of error(s)
-![](resources/manual_spellchecker_quick_analysis_tokenizer.gif)
+### You can pass your own tokenizers
+```python
+# Import nltk's word tokenizer
+from nltk import word_tokenize
+# Read the data
+df = pd.read_csv("Train.csv")
+# Initialize the model
+ob = spell_checker(df, "text", word_tokenize)
+# Quick analysis
+ob.spell_check()
+```
 
 ### Get a list of all the errors
-![](resources/manual_spellchecker_get_errors.gif)
+```python
+# Read the data
+df = pd.read_csv("Train.csv")
+# Initialize the model
+ob = spell_checker(df, "text")
+# Quick analysis. This needs to be performed before getting all errors
+ob.spell_check()
+# Returns a list of all errors
+ob.get_all_errors()
+```
 
 ### Make corrections
+```python
+# Read the data
+df = pd.read_csv("Train.csv")
+# Initialize the model
+ob = spell_checker(df, "text")
+# Start corrections
+ob.correct_words()
+```
 ![](resources/manual_spellchecker_corrections.gif)
 
 ### To save
